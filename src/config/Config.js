@@ -22,38 +22,51 @@ export const primaryLightColor = '#42464b';
 export const webDraculaBackgroundColor = '#282a36';
 
 export function getEntryPageStyle(Utils) {
-    let mainHeight = getRealScreenHeight(Utils)
-    if (WXEnvironment.platform.toLowerCase() === 'ios') {
-        if (Utils.env.isIPhoneX()) {
-            return {height: mainHeight, width: '750px', marginTop: statusHeight + 44}
-        } else {
-            return {height: mainHeight, width: '750px', marginTop: statusHeight}
-        }
+  let mainHeight = getRealScreenHeight(Utils)
+  if (WXEnvironment.platform.toLowerCase() === 'ios') {
+    if (Utils.env.isIPhoneX()) {
+      return {
+        height: mainHeight,
+        width: '750px',
+        marginTop: statusHeight + 44
+      }
+    } else {
+      return {
+        height: mainHeight,
+        width: '750px',
+        marginTop: statusHeight
+      }
     }
-    return {height: mainHeight, width: '750px'}
+  }
+  return {
+    height: mainHeight,
+    width: '750px'
+  }
 }
 
 export function getContentStyle(pageHeight, tabHeight) {
-    return { height: (pageHeight - tabHeight) + 'px' };
+  return {
+    height: (pageHeight - tabHeight) + 'px'
+  };
 }
 
 export function getListBottomEmpty() {
-    return (WXEnvironment.platform.toLowerCase() === 'ios') ? '400px' : '200px'
+  return (WXEnvironment.platform.toLowerCase() === 'ios') ? '400px' : '200px'
 }
 
 export function getListHeight(height = 1234, Utils) {
-    if(WXEnvironment.platform === 'Web') {
-        return height
-    }
-    if (Utils.env.isIPhoneX()) {
-        return height - statusHeight - 44;
-    }
-    return height - statusHeight;
+  if (WXEnvironment.platform === 'Web') {
+    return height
+  }
+  if (Utils.env.isIPhoneX()) {
+    return height - statusHeight - 44;
+  }
+  return height - statusHeight;
 }
 
 export function getRealScreenHeight(Utils) {
-    if(WXEnvironment.platform === 'Web') {
-        return Utils.env.getScreenHeight()
-    }
-    return Utils.env.getScreenHeight() - statusHeight
+  if (WXEnvironment.platform === 'Web') {
+    return Utils.env.getScreenHeight() + 'px'
+  }
+  return Utils.env.getScreenHeight() - statusHeight
 }
